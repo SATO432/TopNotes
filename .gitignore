@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+artifacts/
+*.log
+TopNotes-512.png
+scripts/build-cc-switch-icon.cjs
+.codex/
+.agents/
+.vscode/
+.DS_Store
+Thumbs.db

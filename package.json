@@ -1,0 +1,44 @@
+{
+  "name": "topnotes-windows",
+  "version": "1.0.0",
+  "description": "A Windows-friendly notch-style Markdown sticky notes app with a local file shelf.",
+  "main": "main.js",
+  "author": "TopNotes",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "check": "node --check main.js && node --check preload.js && node --check renderer/app.js",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder --win nsis portable"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.topnotes.windows",
+    "productName": "TopNotes",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "TopNotes.ico",
+      "package.json"
+    ],
+    "win": {
+      "icon": "TopNotes.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TopNotes"
+    }
+  }
+}

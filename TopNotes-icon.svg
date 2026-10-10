@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2227"/>
+      <stop offset="0.55" stop-color="#101518"/>
+      <stop offset="1" stop-color="#070a0c"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#151d21"/>
+      <stop offset="1" stop-color="#050708"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="0.48" stop-color="#ffffff" stop-opacity="0.02"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glowGreen" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="40" y="40" width="944" height="944" rx="230" fill="url(#body)" stroke="#3a454b" stroke-width="18"/>
+  <rect x="66" y="66" width="892" height="892" rx="205" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="4"/>
+  <path d="M150 120 C360 55 670 55 874 150 L840 330 C620 250 400 250 180 330 Z" fill="url(#glass)"/>
+  <rect x="190" y="382" width="644" height="260" rx="112" fill="url(#rail)" stroke="#3d494f" stroke-width="10"/>
+  <path d="M266 405 H758" stroke="#ffffff" stroke-opacity="0.18" stroke-width="8" stroke-linecap="round"/>
+  <path d="M268 620 H756" stroke="#000000" stroke-opacity="0.5" stroke-width="8" stroke-linecap="round"/>
+  <g>
+    <circle cx="330" cy="512" r="82" fill="#000000" fill-opacity="0.7"/>
+    <circle cx="330" cy="512" r="66" fill="#65d79d" filter="url(#glowGreen)"/>
+    <circle cx="312" cy="490" r="24" fill="#ffffff" fill-opacity="0.42"/>
+  </g>
+  <g>
+    <circle cx="512" cy="512" r="82" fill="#000000" fill-opacity="0.7"/>
+    <circle cx="512" cy="512" r="66" fill="#ff5f68" filter="url(#glowRed)"/>
+    <circle cx="494" cy="490" r="24" fill="#ffffff" fill-opacity="0.45"/>
+  </g>
+  <g>
+    <circle cx="694" cy="512" r="82" fill="#000000" fill-opacity="0.7"/>
+    <circle cx="694" cy="512" r="66" fill="#65d79d" filter="url(#glowGreen)"/>
+    <circle cx="676" cy="490" r="24" fill="#ffffff" fill-opacity="0.42"/>
+  </g>
+</svg>

@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>TopNotes</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <svg class="icon-defs" aria-hidden="true">
+      <symbol id="i-chevron-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol>
+      <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5"/><path d="M9 10.8V6a3 3 0 0 1 6 0v4.8l2 2.2v1H7v-1l2-2.2Z"/></symbol>
+      <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2M14 2v2M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1Z"/><path d="M17 10h1a3 3 0 0 1 0 6h-1M6 2v2"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-files" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></symbol>
+      <symbol id="i-folder-open" viewBox="0 0 24 24"><path d="m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></symbol>
+      <symbol id="i-bold" viewBox="0 0 24 24"><path d="M6 12h8a4 4 0 0 0 0-8H6v8Zm0 0h9a4 4 0 0 1 0 8H6v-8Z"/></symbol>
+      <symbol id="i-italic" viewBox="0 0 24 24"><path d="M19 4h-9M14 20H5M15 4 9 20"/></symbol>
+      <symbol id="i-strike" viewBox="0 0 24 24"><path d="M16 4H9a3 3 0 0 0-2.83 4M14 12a4 4 0 0 1 0 8H6M4 12h16"/></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5H4v7h3c0 4-1 5-4 5v4ZM14 21c3 0 7-1 7-8V5h-6v7h3c0 4-1 5-4 5v4Z"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+      <symbol id="i-list-ordered" viewBox="0 0 24 24"><path d="M10 6h11M10 12h11M10 18h11M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1M4 14h2"/></symbol>
+      <symbol id="i-list-checks" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M5 3h14"/></symbol>
+      <symbol id="i-file-plus" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4M12 11v6M9 14h6"/></symbol>
+      <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2a10 10 0 0 0 0 20h1.5a1.5 1.5 0 0 0 0-3H13a2 2 0 0 1 0-4h2a7 7 0 0 0 0-14h-3Z"/></symbol>
+      <symbol id="i-calendar-days" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+      <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+    </svg>
+
+    <main id="app" class="app-shell">
+      <button id="collapsed" class="collapsed" type="button" aria-label="展开 TopNotes">
+        <span id="collapsedLights" class="task-lights" aria-label="任务状态"></span>
+        <span class="collapsed-copy">
+          <strong id="collapsedTitle">Top Notes</strong>
+          <span id="collapsedMeta">暂无任务</span>
+        </span>
+        <span class="collapsed-actions">
+          <span class="icon-button" id="quickNew" role="button" tabindex="0" aria-label="新建便签">
+            <svg><use href="#i-plus"></use></svg>
+          </span>
+        </span>
+      </button>
+
+      <section id="panel" class="panel" aria-label="TopNotes 面板">
+        <header class="topbar">
+          <div class="brand-row">
+            <span id="brandLights" class="task-lights compact" aria-label="任务状态"></span>
+            <strong>Top Notes</strong>
+            <span class="muted" id="lastSaved">本机保存</span>
+          </div>
+          <div class="window-actions">
+            <button class="icon-button" id="toggleSearch" aria-label="搜索">
+              <svg><use href="#i-search"></use></svg>
+            </button>
+            <button class="icon-button" id="collapse" aria-label="收起">
+              <svg><use href="#i-chevron-up"></use></svg>
+            </button>
+            <button class="icon-button" id="quitApp" aria-label="退出">
+              <svg><use href="#i-x"></use></svg>
+            </button>
+          </div>
+        </header>
+
+        <div id="searchRow" class="search-row hidden">
+          <svg><use href="#i-search"></use></svg>
+          <input id="searchInput" type="search" placeholder="搜索标题和内容" autocomplete="off" />
+          <span id="searchCount" class="muted"></span>
+        </div>
+
+        <nav class="tabbar" aria-label="便签分类">
+          <div id="tabs" class="tabs"></div>
+          <button class="tab-add" id="newTab" aria-label="新建便签">
+            <svg><use href="#i-plus"></use></svg>
+          </button>
+        </nav>
+
+        <div class="workspace">
+          <section class="editor-pane">
+            <div class="note-head">
+              <input id="noteTitle" class="note-title" aria-label="标题" />
+              <button class="icon-button note-files-button" id="toggleShelf" aria-label="当前便签文件">
+                <svg><use href="#i-files"></use></svg>
+              </button>
+              <div class="note-meta" id="noteMeta"></div>
+            </div>
+            <div id="noteEditor" class="note-editor" spellcheck="false" aria-label="任务编辑器"></div>
+            <footer class="toolbar">
+              <div class="format-tools">
+                <button class="tool" data-format="daily" title="每日任务">
+                  <svg><use href="#i-calendar-days"></use></svg>
+                </button>
+                <button class="tool" id="colorButton" title="颜色标记">
+                  <svg><use href="#i-palette"></use></svg>
+                </button>
+                <button class="tool" data-format="list" title="项目子类">
+                  <svg><use href="#i-list"></use></svg>
+                </button>
+                <button class="tool" data-format="ordered" title="编号子类">
+                  <svg><use href="#i-list-ordered"></use></svg>
+                </button>
+                <div id="colorPalette" class="color-palette hidden">
+                  <button type="button" class="color-swatch" data-color="#ff6b6b" aria-label="红色"></button>
+                  <button type="button" class="color-swatch" data-color="#ffc857" aria-label="黄色"></button>
+                  <button type="button" class="color-swatch" data-color="#7ee081" aria-label="绿色"></button>
+                  <button type="button" class="color-swatch" data-color="#68b7ff" aria-label="蓝色"></button>
+                  <button type="button" class="color-swatch" data-color="#c58cff" aria-label="紫色"></button>
+                  <button type="button" class="color-reset" id="colorReset">默认</button>
+                </div>
+              </div>
+
+              <div class="trailing-tools">
+                <button class="tool" id="keepAwake" title="保持屏幕唤醒">
+                  <svg><use href="#i-coffee"></use></svg>
+                </button>
+                <button class="tool" id="alwaysOnTop" title="始终置顶">
+                  <svg><use href="#i-pin"></use></svg>
+                </button>
+                <button class="tool" id="toggleSettings" title="设置">
+                  <svg><use href="#i-settings"></use></svg>
+                </button>
+                <button class="tool" id="exportNote" title="导出 Markdown">
+                  <svg><use href="#i-download"></use></svg>
+                </button>
+              </div>
+            </footer>
+          </section>
+
+          <aside id="shelfDrawer" class="drawer shelf-drawer hidden" aria-label="文件架">
+            <header class="drawer-head">
+              <div class="drawer-title">
+                <strong>文件架</strong>
+                <span id="shelfCount" class="muted"></span>
+              </div>
+              <div class="drawer-actions">
+                <button class="icon-button" id="addFiles" aria-label="导入文件" title="导入文件">
+                  <svg><use href="#i-file-plus"></use></svg>
+                </button>
+                <button class="icon-button" id="closeShelf" aria-label="关闭文件架" title="关闭文件架">
+                  <svg><use href="#i-x"></use></svg>
+                </button>
+              </div>
+            </header>
+            <div id="dropZone" class="drop-zone">
+              <svg><use href="#i-folder-open"></use></svg>
+              <span>拖入文件</span>
+            </div>
+            <div class="shelf-list">
+              <section class="shelf-section">
+                <header>网址</header>
+                <div id="urlShelfList" class="shelf-items"></div>
+              </section>
+              <section class="shelf-section">
+                <header>文件</header>
+                <div id="fileShelfList" class="shelf-items"></div>
+              </section>
+            </div>
+            <input id="filePicker" type="file" multiple class="hidden-file" />
+          </aside>
+
+          <aside id="settingsDrawer" class="drawer settings-drawer hidden" aria-label="设置">
+            <header class="drawer-head">
+              <strong>设置</strong>
+              <button class="icon-button" id="closeSettings" aria-label="关闭设置">
+                <svg><use href="#i-x"></use></svg>
+              </button>
+            </header>
+            <label class="setting-row column" id="settingWindowModeRow">
+              <span>小窗模式</span>
+              <select id="settingWindowMode">
+                <option value="pointer">指针触发</option>
+                <option value="persistent">常驻</option>
+              </select>
+            </label>
+            <label class="setting-row" id="settingLaunchRow">
+              <span>开机启动</span>
+              <input id="settingLaunch" type="checkbox" />
+            </label>
+            <label class="setting-row">
+              <span>始终置顶</span>
+              <input id="settingTop" type="checkbox" />
+            </label>
+            <label class="setting-row">
+              <span>保持唤醒</span>
+              <input id="settingAwake" type="checkbox" />
+            </label>
+            <label class="setting-row column">
+              <span>不透明度</span>
+              <input id="settingOpacity" type="range" min="0.72" max="1" step="0.02" />
+            </label>
+            <label class="setting-row column">
+              <span>主题</span>
+              <select id="settingTheme">
+                <option value="graphite">石墨</option>
+                <option value="paper">纸张</option>
+                <option value="midnight">深海</option>
+                <option value="forest">森林</option>
+                <option value="contrast">高对比</option>
+              </select>
+            </label>
+            <div class="shortcut-list">
+              <span>Ctrl + Alt + N</span><span>显示或隐藏</span>
+              <span>Esc</span><span>收起</span>
+              <span>Ctrl + N</span><span>新建便签</span>
+              <span>Ctrl + K</span><span>搜索</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <aside id="taskSettings" class="task-settings hidden" role="dialog" aria-label="批注与提醒">
+        <button class="icon-button task-settings-close" id="closeTaskSettings" aria-label="关闭">
+          <svg><use href="#i-x"></use></svg>
+        </button>
+        <div
+          id="taskComment"
+          class="task-comment-editor"
+          contenteditable="true"
+          data-placeholder="输入批注，或把网址和文件拖到这里"
+        ></div>
+      </aside>
+
+      <div id="appDialogOverlay" class="dialog-overlay hidden">
+        <section class="app-dialog" role="dialog" aria-modal="true" aria-labelledby="appDialogTitle">
+          <header class="app-dialog-head">
+            <strong id="appDialogTitle">确认</strong>
+            <button class="icon-button" id="appDialogClose" aria-label="关闭">
+              <svg><use href="#i-x"></use></svg>
+            </button>
+          </header>
+          <p id="appDialogMessage" class="app-dialog-message"></p>
+          <input id="appDialogInput" class="app-dialog-input hidden" type="text" />
+          <footer class="app-dialog-actions">
+            <button type="button" class="dialog-button secondary" id="appDialogCancel">取消</button>
+            <button type="button" class="dialog-button primary" id="appDialogConfirm">确认</button>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
