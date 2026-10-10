@@ -4,6 +4,10 @@
 
 TopNotes is a Windows desktop sticky-notes app inspired by NotchNotes. It keeps a slim always-on-top bar at the top of the screen and expands into a rich task notebook with a local file shelf.
 
+## Demo
+
+![TopNotes feature demo](demo/TopNotes-demo.gif)
+
 ## Download
 
 Download the latest Windows portable package from:
