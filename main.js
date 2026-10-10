@@ -422,6 +422,8 @@ function createWindow() {
     show: false,
     skipTaskbar: true,
     alwaysOnTop,
+    hasShadow: false,
+    thickFrame: false,
     backgroundColor: "#00000000",
     icon: appIcon(64),
     webPreferences: {

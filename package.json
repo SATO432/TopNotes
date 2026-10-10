@@ -1,6 +1,6 @@
 {
   "name": "topnotes-windows",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Windows-friendly notch-style Markdown sticky notes app with a local file shelf.",
   "main": "main.js",
   "author": "TopNotes",
